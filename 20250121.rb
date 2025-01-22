@@ -113,7 +113,8 @@ end
 def draw_circle(circle)
   fill(0, 0, 255, 100)
   noStroke
-  ellipse(circle[:x], circle[:y], circle[:diameter])
+  # ellipse(circle[:x], circle[:y], circle[:diameter])
+  ellipse(circle[:x], circle[:y], circle[:diameter], circle[:diameter])
 end
 
 # --------------------------------------------------------------
