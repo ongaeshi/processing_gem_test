@@ -3,7 +3,7 @@ using Processing
 
 $boids = []
 
-def setup
+setup do
   createCanvas(720, 400)
 
   # Add an initial set of boids into the system
@@ -12,7 +12,7 @@ def setup
   end
 end
 
-def draw
+draw do
   background(51)
   # Run all the boids
   $boids.each do |boid|
@@ -24,7 +24,7 @@ class Boid
   attr_accessor :acceleration, :velocity, :position, :r, :maxspeed, :maxforce
   def initialize(x, y)
     @acceleration = createVector(0, 0)
-    @velocity = P5::Vector.random2D()
+    @velocity = Vector.random2D()
     @position = createVector(x, y)
     @r = 3.0
     @maxspeed = 3     # Maximum speed
@@ -72,12 +72,12 @@ class Boid
   # A method that calculates and applies a steering force towards a target
   # STEER = DESIRED MINUS VELOCITY
   def seek(target)
-    desired = P5::Vector.sub(target, @position) # A vector pointing from the location to the target
+    desired = Vector.sub(target, @position) # A vector pointing from the location to the target
     # Normalize desired and scale to maximum speed
     desired.normalize()
     desired.mult(@maxspeed)
     # Steering = Desired minus Velocity
-    steer = P5::Vector.sub(desired, @velocity)
+    steer = Vector.sub(desired, @velocity)
     steer.limit(@maxforce) # Limit to maximum steering force
     steer
   end
@@ -105,11 +105,11 @@ class Boid
     count = 0
     # For every boid in the system, check if it's too close
     boids.each do |boid|
-      d = P5::Vector.dist(@position, boid.position)
+      d = Vector.dist(@position, boid.position)
       # If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
       if (d > 0) && (d < desiredseparation)
         # Calculate vector pointing away from neighbor
-        diff = P5::Vector.sub(@position, boid.position)
+        diff = Vector.sub(@position, boid.position)
         diff.normalize()
         diff.div(d) # Weight by distance
         steer.add(diff)
@@ -139,7 +139,7 @@ class Boid
     sum = createVector(0, 0)
     count = 0
     boids.each do |boid|
-      d = P5::Vector.dist(@position, boid.position)
+      d = Vector.dist(@position, boid.position)
       if (d > 0) && (d < neighbordist)
         sum.add(boid.velocity)
         count += 1
@@ -149,7 +149,7 @@ class Boid
       sum.div(count)
       sum.normalize()
       sum.mult(@maxspeed)
-      steer = P5::Vector.sub(sum, @velocity)
+      steer = Vector.sub(sum, @velocity)
       steer.limit(@maxforce)
       steer
     else
@@ -164,7 +164,7 @@ class Boid
     sum = createVector(0, 0) # Start with empty vector to accumulate all locations
     count = 0
     boids.each do |boid|
-      d = P5::Vector.dist(@position, boid.position)
+      d = Vector.dist(@position, boid.position)
       if (d > 0) && (d < neighbordist)
         sum.add(boid.position) # Add location
         count += 1
