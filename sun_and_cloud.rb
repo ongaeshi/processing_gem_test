@@ -1,12 +1,12 @@
 require "processing"
 using Processing
 
-setup do
+def setup
   createCanvas(800, 600)
   background(255)
 end
 
-draw do
+def draw
   background(255)
 
   draw_sun(200, 200)

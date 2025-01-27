@@ -3,16 +3,16 @@ using Processing
 
 $boids = []
 
-setup do
+def setup
   createCanvas(720, 400)
 
   # Add an initial set of boids into the system
-  (0...30).each do # 0...100
+  (0...50).each do # 0...100
     $boids.push(Boid.new(random(width), random(height)))
   end
 end
 
-draw do
+def draw
   background(51)
   # Run all the boids
   $boids.each do |boid|

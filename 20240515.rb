@@ -4,17 +4,17 @@ using Processing
 
 # RubyKaigi 2024 logo https://rubykaigi.org/2024/ design by mmito1224
 
-setup do
+def setup
   createCanvas(400, 400)
   background("#fced4f")
-  # frameRate(5)
+  frameRate(5)
 end
 
-t = 0
+$t = 0
 
-draw do
-  t += 1
-  if t % 5 == 0
+def draw
+  $t += 1
+  if $t % 5 == 0
     translate(width / 2, height / 2)
     rotate(HALF_PI - frameCount)
     draw_frame
