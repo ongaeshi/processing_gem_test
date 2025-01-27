@@ -7,7 +7,7 @@ using Processing
 def setup
   createCanvas(400, 400)
   background("#fced4f")
-  frameRate(5)
+  # frameRate(5)
 end
 
 $t = 0
