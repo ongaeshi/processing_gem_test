@@ -12,7 +12,7 @@ MAX_SPEED = 3   # 速度の上限
 ACCELERATION_FACTOR = 0.5
 DECELERATION_FACTOR = 0.99
 
-setup do
+def setup
   createCanvas(600, 600)
   
   circle_count = 40
@@ -27,7 +27,7 @@ setup do
   end
 end
 
-draw do
+def draw
   background(255)
   draw_lines_between_circles
   update_circles
